@@ -27,4 +27,13 @@ outputs = llm.generate(
     use_tqdm=False,
 )
 
+# print text output
 print(outputs[0].outputs[0].text)
+
+# calculate and print tokens per second
+num_generated_tokens = len(outputs[0].outputs[0].token_ids)
+arrival_time = outputs[0].metrics.arrival_time
+finished_time = outputs[0].metrics.finished_time
+total_time = finished_time - arrival_time
+print("\n\n===")
+print(f"Generated {num_generated_tokens} tokens in {total_time:.2f} seconds = {num_generated_tokens/total_time:.2f} tok/sec")
