@@ -1,2 +1,6 @@
 vllm>=0.4.2
+wheel
 flash-attn
+
+# TODO for evaluation tools
+#aqlm[gpu]

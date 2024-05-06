@@ -55,6 +55,64 @@ source ./venv/bin/activate
 ## Benchmarks
 [Inferencing Speed Benchmarks](BENCHMARKS.md)
 
+## Eval
+Inside the docker Context
+```bash
+source ./venv/bin/activate
+# install evaluation harness
+git clone git@github.com:Vahe1994/AQLM.git
+cd AQML
+pip install -r lm-evaluation-harness/requirements.txt
+
+export CUDA_VISIBLE_DEVICES=0
+#export QUANTZED_MODEL=<PATH_TO_SAVED_QUANTIZED_MODEL_FROM_MAIN.py>
+export MODEL_PATH="ISTA-DASLab/Meta-Llama-3-8B-Instruct-AQLM-2Bit-1x16"
+#export DATASET=<INSERT DATASET NAME OR PATH TO CUSTOM DATA>
+#export WANDB_PROJECT=MY_AQ_LM_EVAL
+#export WANDB_NAME=COOL_EVAL_NAME
+
+python lmeval.py \
+    --model hf-causal \
+    --model_args pretrained=$MODEL_PATH,dtype=float16,use_accelerate=True \
+    --load $QUANTZED_MODEL \
+    --tasks winogrande,piqa,hellaswag,arc_easy,arc_challenge \
+    --batch_size 1
+
+# install evaluation harness
+#git clone https://github.com/EleutherAI/lm-evaluation-harness
+#cd lm-evaluation-harness
+#pip install -e .
+#cd ..
+##pip install aqlm[gpu]
+#
+##pip install lm_eval[vllm]
+##--model_args pretrained="$MODEL_NAME",tensor_parallel_size={GPUs_per_model},dtype=auto,gpu_memory_utilization=0.8,data_parallel_size={model_replicas} \
+#export MODEL_NAME="ISTA-DASLab/Meta-Llama-3-8B-Instruct-AQLM-2Bit-1x16"
+#lm_eval \
+#    --model vllm \
+#    --model_args pretrained="$MODEL_NAME",dtype=auto,gpu_memory_utilization=0.8 \
+#    --tasks mmlu \
+#    --batch_size auto
+#
+## run
+#export MODEL_NAME="ISTA-DASLab/Meta-Llama-3-8B-Instruct-AQLM-2Bit-1x16"
+#lm_eval \
+#    --model hf \
+#    --model_args pretrained="$MODEL_NAME" \
+#    --tasks winogrande,piqa,hellaswag,arc_easy,arc_challenge,gsm8k,mmlu \
+#    --device cuda:0 \
+#    --batch_size 1
+#
+#export OPENAI_API_KEY=nobearertoken
+#export API_URL="http://172.17.0.1:1234/v1"
+#export LLM_MODEL="openai/model"
+#export LLM_MODEL="openai/model"
+#lm_eval \
+#    --model local-chat-completions \
+#    --tasks mmlu \
+#    --model_args model="$LLM_MODEL",base_url="$API_URL"
+```
+
 ## Quantization
 Sorry, takes way to long to AQLM quantize a model at home on your 3090TI.
 
@@ -63,3 +121,4 @@ Sorry, takes way to long to AQLM quantize a model at home on your 3090TI.
 * [vllm-project/vlm](https://github.com/vllm-project/vllm)
 * [Vahe1994/AQLM](https://github.com/Vahe1994/AQLM)
 * [AQLM ipynb](https://github.com/Vahe1994/AQLM/blob/main/notebooks/aqlm_vllm.ipynb)
+* [EleutherAI/lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)
