@@ -2,20 +2,22 @@ vLLM-inference-AQLM
 ===
 Model Inferencing Speed Benchmarks
 
-## Hardware
-3090TI 24GB VRAM (had to exit xwindows to get enough VRAM as it uses *everything*)
+Using the largest context that would not OOM
 
-#### Llama-3-8B
+## Hardware
+3090TI 24GB VRAM
+
+#### ISTA-DASLab/Meta-Llama-3-8B-Instruct-AQLM-2Bit-1x16
 ```python
 llm = LLM(
       model="ISTA-DASLab/Meta-Llama-3-8B-Instruct-AQLM-2Bit-1x16",
       enforce_eager=True,
       gpu_memory_utilization=0.99,
-      max_model_len=8192, # max size for this particular model
+      max_model_len=8192, # this is a model limit, not a VRAM limit
 )
 ```
 
-```bash
+```
 ¡Con gusto! Here's a poem about the sun in Spanish:
 
 Sol de oro, de luz me envuelve,
@@ -66,7 +68,8 @@ Note: This is a personal poem, so it's not a traditional or classical poem, but 
 Generated 419 tokens in 6.77 seconds = 61.92 tok/sec
 ```
 
-#### Llama-3-70B
+#### ISTA-DASLab/Meta-Llama-3-70B-Instruct-AQLM-2Bit-1x16
+(had to exit xwindows to get enough VRAM as it uses *everything*)
 ```pyton
 llm = LLM(
       model="ISTA-DASLab/Meta-Llama-3-70B-Instruct-AQLM-2Bit-1x16",
@@ -77,7 +80,7 @@ llm = LLM(
 )
 ```
 
-```bash
+```
 Here is a poem about the sun in Spanish:
 
 El sol, rey del cielo azul,
@@ -123,4 +126,61 @@ And to enjoy life with intensity.
 
 ===
 Generated 289 tokens in 36.04 seconds = 8.02 tok/sec
+```
+
+#### ISTA-DASLab/c4ai-command-r-v01-AQLM-2Bit-1x16
+```python
+llm = LLM(
+      model="ISTA-DASLab/c4ai-command-r-v01-AQLM-2Bit-1x16",
+      enforce_eager=True,
+      gpu_memory_utilization=0.99,
+      max_model_len=10240,
+      kv_cache_dtype="fp8", # enabling this allows a bit more context size
+)
+```
+
+```
+Here's a poem about the sun:
+
+"El Sol"
+
+El sol, un astro brilliante,
+Que calienta y da vida,
+Es el rey del cielo,
+Con su luz nos alumbra.
+
+Su fuego es un abrazo,
+Que nos calienta y nos da gozo,
+Con sus rayos de amor,
+Nunca nos deja en la frialdad.
+
+El sol, es un amigo fiel,
+Que siempre esta cerca,
+Nunca nos abandona,
+Su luz nos guía en la noche.
+
+El sol, es un artista,
+Que pinta el cielo con sus colores,
+Un painter del firmamento,
+Que nos regala sus bellas creaciones.
+
+El sol, es la fuente de vida,
+Que nos da la energia,
+Para vivir y disfrute,
+Un don que siempre debemos agradecer.
+
+El sol, un amigo del alma,
+Que siempre esta ahí,
+Dando luz a nuestra alma,
+Un companion en nuestro viaje.
+
+Ojala que siempre brille,
+Nunca se apaga su fuego,
+Y que nos siga alumbrando,
+Con su calor y su luz.
+
+Hope you enjoy this poem!
+
+===
+Generated 267 tokens in 17.50 seconds = 15.25 tok/sec
 ```
