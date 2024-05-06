@@ -1,7 +1,6 @@
 vLLM-inference-AQML
 ===
-Use vLLM and FlashAttention-2 backend for AQML quantized Local LLM
-model inferencing.
+Use vLLM and FlashAttention for AQML quantized Local LLM model inferencing.
 
 ## Issues
 Seems to require Python <3.11, so bleeding edge 3.12+ can use the
@@ -18,10 +17,14 @@ docker build -t localllama/vllm-inference-aqml .
 It will persist all `huggingface` and `pip` cache in the local `.cache/`
 folder across runs to reduce extreneous downloads.
 ```
+# Linux
 ./start-container.sh
+# Windows (untested)
+start-container.bat
 ```
 
 ## Inside the Docker Container Context
+Once you are inside the container shell, run the following the first time.
 ```bash
 # 1. create pip virtual environment
 python3 -m venv ./venv
@@ -41,6 +44,9 @@ python3 -V
 ## Inference
 Now you are ready to go. It will automatically download the models the
 first time and persist them in `./cache/` folder across runs.
+
+Remember to get into the python venv by sourcing the activate script
+each time you start a new container.
 ```bash
 source ./venv/bin/activate
 ./inference.py

@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 
-import os
 from vllm import LLM, SamplingParams
-
-os.environ['HF_HOME'] = './hub/'
-
 
 llm = LLM(
     model="ISTA-DASLab/Meta-Llama-3-8B-Instruct-AQLM-2Bit-1x16", # An AQLM model checkpoint
