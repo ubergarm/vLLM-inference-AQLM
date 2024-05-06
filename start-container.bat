@@ -6,5 +6,5 @@ docker run ^
       --gpus all ^
       -v "%cd%":"/workspace" ^
       -v "%cd%/.cache":"/root/.cache" ^
-      localllama/vllm-inference-aqml ^
+      localllama/vllm-inference-aqlm ^
       /bin/bash

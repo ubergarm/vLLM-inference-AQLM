@@ -6,8 +6,10 @@ llm = LLM(
     model="ISTA-DASLab/Meta-Llama-3-8B-Instruct-AQLM-2Bit-1x16", # An AQLM model checkpoint
     # model="ISTA-DASLab/Meta-Llama-3-70B-Instruct-AQLM-2Bit-1x16",
     enforce_eager=True,  # Don't compile the graph
-    gpu_memory_utilization=0.99,
-    max_model_len=1024,
+    gpu_memory_utilization=0.90,
+    max_model_len=1024, # this is the context size
+    kv_cache_dtype="fp8", # testing
+    quantization="aqlm",
 )
 tokenizer = llm.get_tokenizer()
 
