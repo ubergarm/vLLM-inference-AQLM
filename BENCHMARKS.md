@@ -184,3 +184,54 @@ Hope you enjoy this poem!
 ===
 Generated 267 tokens in 17.50 seconds = 15.25 tok/sec
 ```
+
+#### `lmstudio-community/Meta-Llama-3-70B-Instruct-GGUF/Meta-Llama-3-70B-Instruct-IQ2_XS.gguf`
+For comparision, used `LMStudio` with Flash Attention enabled and 4k context fully offloaded.
+```
+Here's a poem about the sun in Spanish:
+
+El sol, rey del día,
+Brilla con fuego en el cielo,
+Su luz dorada y cálida,
+Ilumina la tierra con esplendor.
+
+Con su rostro radiante,
+Eleva las montañas altivas,
+Y con sus rayos de oro,
+Despierta la vida en los campos.
+
+En verano, su calor nos envuelve,
+Y en invierno, su luz nos guía,
+Es el símbolo de la esperanza,
+La fuente de la vida y del amor.
+
+Oh, sol, rey del día,
+Eres la joya más brillante,
+Que ilumina el camino,
+Y nos llena de alegría.
+
+Translation:
+
+The sun, king of the day,
+Shines with fire in the sky,
+Its golden and warm light,
+Illuminates the earth with splendor.
+
+With its radiant face,
+It lifts up the lofty mountains,
+And with its rays of gold,
+Awakens life in the fields.
+
+In summer, its heat envelops us,
+And in winter, its light guides us,
+It is the symbol of hope,
+The source of life and love.
+
+Oh, sun, king of the day,
+You are the most brilliant jewel,
+That illuminates our path,
+And fills us with joy.
+
+===
+335 tokens, 22.19 tok/sec
+```
