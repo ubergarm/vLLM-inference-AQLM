@@ -6,10 +6,13 @@ llm = LLM(
     model="ISTA-DASLab/Meta-Llama-3-8B-Instruct-AQLM-2Bit-1x16", # An AQLM model checkpoint
     # model="ISTA-DASLab/Meta-Llama-3-70B-Instruct-AQLM-2Bit-1x16",
     enforce_eager=True,  # Don't compile the graph
-    gpu_memory_utilization=0.90,
+    gpu_memory_utilization=0.99,
     max_model_len=1024, # this is the context size
-    kv_cache_dtype="fp8", # testing
-    quantization="aqlm",
+    # kv_cache_dtype="fp8", # enabling this allows a bit more context size
+    # use_v2_block_manager=False, # testing experimental stuff below
+    # enable_chunked_prefill=True, max_num_batched_tokens=512,
+    # quantization_param_path="DOESNOTEXIST.json",
+    # quantization="aqlm", # already pulls this from the model
 )
 tokenizer = llm.get_tokenizer()
 

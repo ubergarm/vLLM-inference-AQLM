@@ -52,6 +52,9 @@ source ./venv/bin/activate
 ./inference.py
 ```
 
+## Benchmarks
+[Inferencing Speed Benchmarks](BENCHMARKS.md)
+
 ## Quantization
 Sorry, takes way to long to AQLM quantize a model at home on your 3090TI.
 
