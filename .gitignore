@@ -1,3 +1,6 @@
 venv/
 __pycache__/
 .cache/
+.config/
+AQLM/
+lm-evaluation-harness/

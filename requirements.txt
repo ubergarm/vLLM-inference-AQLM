@@ -2,5 +2,13 @@ vllm>=0.4.2
 wheel
 flash-attn
 
-# TODO for evaluation tools
+# for evaluation tools
+#lm_eval
+#datasets
+#sqlitedict
+#sacrebleu
+#scikit-learn
+#omegaconf
+#pycountry
+#rouge-score
 #aqlm[gpu]
